@@ -1,19 +1,20 @@
-import Footer from "./Components/Footer/Footer";
 import ItemListContainer from "./Components/ItemListContainer/ItemListContainer";
 import Navbar from "./Components/Navbar/Navbar";
-import ProductCard from "./Components/ProductCard/ProductCard";
-
+import Cart from "./Components/Cart/Cart"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ItemDetailContainer from "./Components/ItemDetailContainer/ItemDetailContainer";
 
 function App() {
   return (
-    <div>
-      <Navbar /> 
-      <ItemListContainer greeting={"Bienvenido"} />
-      <ProductCard title="producto1" price={2000} isRed={false} />
-      <ProductCard title="producto2" price={2000} isRed={true} />
-      <ProductCard title="producto3" isRed={true} />
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Navbar />
+        <Routes>
+          <Route path="/" element={<ItemListContainer />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/itemDetail/:id" element={<ItemDetailContainer />} />
+          <Route path ="*" element={<h1>error 404 :Not Found </h1>} />
+        </Routes>
+    </BrowserRouter>
   );
 }
 
