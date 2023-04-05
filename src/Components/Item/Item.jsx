@@ -9,11 +9,10 @@ import Typography from '@mui/material/Typography';
 const Item = ({element}) => {
   return (
     <div>
-          <Card sx={{ Width: 345,height:300 }}>
+      <Card sx={{ Width: 700,height:700, border: "1px solid black"}}>
       <CardMedia
-        sx={{ height: 140 }}
+        sx={{ height: 275 }}
         image={element.img}
-        title="green iguana"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -25,7 +24,7 @@ const Item = ({element}) => {
       </CardContent>
       <CardActions>
         <Link to={`/itemDetail/${element.id}`}>
-          <Button size="small" variant="contained">Ver detalle
+          <Button size="small" variant="contained">Ver más
           </Button>
           </Link>
       </CardActions>

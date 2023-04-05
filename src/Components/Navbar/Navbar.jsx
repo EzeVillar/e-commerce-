@@ -2,22 +2,20 @@ import CartWirdget from "../CartWidget/CartWirdget";
 import styles from "./NavBar.module.css";
 import {Link} from "react-router-dom" 
 
-const Navbar = () => {
+const Navbar = ({children}) => {
   return (
-    <div className={styles.containerNavbar}>
-      <Link to="/"
-        src="https://res.cloudinary.com/dx1yhtrla/image/upload/v1677319536/2d7083ff2ceb0767830b4e93d85336db_vswak2.png"
-        alt=""
-        style={{ width: "3%", objectFit: "cover" }}
-      />
-      <ul className={styles.containerList}>
-        <li className={styles.list}>Remeras</li>
-        <li className={styles.list}>Botines </li>
-        <li className={styles.list}>Pelotas</li>
-      </ul>
-      <CartWirdget />
-    </div>
-  );
+      <div>
+         <div className={styles.containerNavbar}>
+           <Link to="/"> <img src="https://res.cloudinary.com/dx1yhtrla/image/upload/v1680217966/prueba_xmvzpx.png" alt="Logo"/> </Link>
+                <ul className={styles.containerList}>
+                  <Link to="/category/botines"className={styles.list}>Botines </Link>
+                  <Link to="/category/pelotas" className={styles.list}>Pelotas</Link>
+                  <Link to="/category/camisetas" className={styles.list}>Camisetas</Link>
+                </ul>
+                <CartWirdget />
+              </div>
+          </div>
+    );
 };
 
 export default Navbar;

@@ -1,28 +1,55 @@
 import { useState, useEffect } from "react";
-import { products } from "../../productsMock";
+import { useParams } from "react-router-dom";
 import ItemList from "../ItemList/ItemList";
+import ClipLoader from "react-spinners/ClipLoader";
+import { db } from "../../firebaseConfig"
+import { collection, getDocs,query,where } from "firebase/firestore"
 
-// let listItems = ["casa", "perro", "gato", "auto"];
+
+
+const override = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "#82b4dd",
+};
 
 const ItemListContainer = () => {
-  const [items, setItems] = useState([]);
+ const{categoryName} = useParams();
+ 
+ const [items, setItems] = useState([]);
+
+
 
   useEffect(() => {
-    const productList = new Promise((resolve, reject) => {
-      resolve(products);
-      // reject("lo siento,no tienes autorizacion")
-    });
+    const itemsCollection = collection(db,"products")
+    
+    let consulta = undefined
 
-    productList
-      .then((res) => {
-        setItems(res);
-      })
-      .catch((error) => {
-        console.log(error);
+      if(categoryName) {
+        const q = query(itemsCollection, where("category", "==",categoryName));
+        consulta = getDocs(q);
+      } else {      
+        consulta = getDocs(itemsCollection)
+       }  
+       consulta.then((res)=> {
+        let products = res.docs.map((elemento)=> {
+          return {
+            ...elemento.data(),
+            id: elemento.id
+          };
+        });
+        setItems(products)
       });
-  }, []);
+      },[categoryName]);
 
-  console.log(items);
+  if( items.length === 0){
+    return  <ClipLoader
+    cssOverride={override}
+    size={150}
+    aria-label="Loading Spinner"
+    data-testid="loader"
+  />
+  }
 
   return (
     <div>

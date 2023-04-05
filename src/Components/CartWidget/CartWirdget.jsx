@@ -1,14 +1,22 @@
 import { FiShoppingCart } from "react-icons/fi";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 
 const CartWirdget = () => {
+  const { getTotalQuantity } = useContext(CartContext);
+
+  const total = getTotalQuantity();
+
   return (
-      <Link to="/cart"> 
-          <div>
-            <span>0</span>
-            <FiShoppingCart color="black" size={50}/>
-          </div>
-      </Link>
+    <Link to="/cart">
+      <div>
+        <FiShoppingCart color="black" size={50} />
+        <div>
+          <span>{total}</span>
+        </div>
+      </div>
+    </Link>
   );
 };
 
