@@ -1,15 +1,16 @@
 import React from "react";
 import Item from "../Item/Item";
+import "./ItemList.css"
 
 const ItemList = ({ items }) => {
   return (
-    <div style={{ display: "flex",
-      width:"100%",
-      minHeight:"100vh",
-      justifyContent:"space-evenly",
-      alignItems:"center"}}>
+    <div className="card">
       {items.map((element) => {
-        return <Item key={element.id} element={element} />;
+        return (
+          <div className="center">
+            <Item className="column" key={element.id} element={element} />
+          </div>
+        )
       })}
     </div>
   );

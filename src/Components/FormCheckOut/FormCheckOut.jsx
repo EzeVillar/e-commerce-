@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { addDoc,collection,updateDoc, doc} from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
+import Swal from 'sweetalert2';
+import "./FormCheckOut.css"
 
 const FormCheckOut = ({cart,getTotalPrice,setOrderId,clearCart}) => {
     const [userData, setUserDate] = useState({
@@ -12,11 +14,19 @@ const FormCheckOut = ({cart,getTotalPrice,setOrderId,clearCart}) => {
    
     const handleSumbit = (e) => {
         e.preventDefault()
-        let total = getTotalPrice()
-        let order = {
-            buyer: userData,
-            items: cart,
-            total
+        if (!userData.name || !userData.email || !userData.phone) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Por favor, complete el formulario.',
+              })
+            return
+          }
+            let total = getTotalPrice()
+            let order = {
+                buyer: userData,
+                items: cart,
+                total
         }
     
         let orderCollection = collection( db,"orders" )
@@ -29,12 +39,14 @@ const FormCheckOut = ({cart,getTotalPrice,setOrderId,clearCart}) => {
 
             cart.map((product)=>{
                 let refDoc = doc(db,"products",product.id)
-                    updateDoc(refDoc,{stock:product.stock - product.quantity})
+                    updateDoc(refDoc,{stock:product.stock - product.quantity});
+                    return null
             });
     }
 
   return (
-    <div>
+    <div className='form'>
+      <h1 className='title-check'>Ingrese sus datos.</h1>
         <form onSubmit={handleSumbit}>
             <input type="text" 
             placeholder='Nombre' 
@@ -49,10 +61,10 @@ const FormCheckOut = ({cart,getTotalPrice,setOrderId,clearCart}) => {
             value={userData.phone}
             onChange={(e) => setUserDate({...userData,phone: e.target.value})}/>
             <button type='submit'>Comprar</button>
-
-        </form>
+         </form>
     </div>
   )
 }
 
 export default FormCheckOut
+

@@ -1,0 +1,23 @@
+.caja-cart{
+    margin-top: 10px;
+    border: 2px solid black;
+}
+
+.cart-order {
+    text-align: center;
+    margin: 200px;
+    
+}
+
+.cart-order h2 {
+    margin-bottom: 10px;
+}
+
+.cart-order h4 {
+    margin-bottom: 10px;
+}
+
+.cart-seguir{
+    text-decoration: none;
+    
+}
