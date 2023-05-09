@@ -5,8 +5,8 @@ import {Link} from "react-router-dom";
 
 const Navbar = ({children}) => {
   return (
-      <div>
-         <div className={styles.containerNavbar}>
+    <div>
+        <div className={styles.containerNavbar}>
            <Link to="/"> <img src="https://res.cloudinary.com/dx1yhtrla/image/upload/v1680217966/prueba_xmvzpx.png" alt="Logo"/> </Link>
                 <ul className={styles.containerList}>
                   <Button variant="contained"> <Link to="/category/botines" className={styles.list}>Botines</Link> </Button>

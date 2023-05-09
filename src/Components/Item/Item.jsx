@@ -19,10 +19,6 @@ const Item = ({ element }) => {
           <Typography variant="body2" color="text.secondary">
             {element.description}
           </Typography>
-          {/* <Typography variant="body2" color="text.primary">
-            <div>Precio</div>
-            {element.price}
-          </Typography> */}
         </CardContent>
         <CardActions>
           <Link to={`/itemDetail/${element.id}`}>

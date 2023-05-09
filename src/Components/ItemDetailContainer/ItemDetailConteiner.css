@@ -18,3 +18,10 @@ h1 {
 .box img {
     margin-left: 50px;
 }
+
+@media (max-width: 768px) {
+    .box {
+      width: 90%;
+      margin: 50px auto;
+    }
+  }

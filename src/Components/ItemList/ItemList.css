@@ -9,9 +9,16 @@
   align-items: center;
   margin-top: 10px;
   margin-bottom: 10px;
+
 }
 .center {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media (max-width: 768px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
 }
